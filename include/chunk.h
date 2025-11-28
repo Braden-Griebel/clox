@@ -14,6 +14,11 @@
  * */
 typedef enum {
   OP_CONSTANT, //! Get a constant from Constant array
+  OP_ADD,      //! Binary addition
+  OP_SUBTRACT, //! Binary subtraction
+  OP_MULTIPLY, //! Binary multiplication
+  OP_DIVIDE,   //! Binary Division
+  OP_NEGATE,   //! Unary negate
   OP_RETURN,   //! Return (from function)
 } OpCode;
 

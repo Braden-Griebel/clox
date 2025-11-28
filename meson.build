@@ -7,5 +7,6 @@ sources = [
     'src/main.c',
     'src/memory.c',
     'src/value.c',
+    'src/vm.c',
 ]
 executable('clox', sources, include_directories: inc)
