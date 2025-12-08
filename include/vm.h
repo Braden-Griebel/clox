@@ -37,7 +37,7 @@ void freeVM();
 /**
  * Interpret a Chunk of Bytecode
  * */
-InterpretResult interpret(Chunk *chunk);
+InterpretResult interpret(const char *source);
 
 /**
  * Push a value onto the VMs stack.
