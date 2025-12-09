@@ -66,7 +66,7 @@ typedef struct {
 /**
  * Initialize the Scanner from a source code string
  *
- * @param char* Source code string
+ * @param source Source code string
  * */
 void initScanner(const char *source);
 

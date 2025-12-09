@@ -9,6 +9,7 @@
 #include <stddef.h>
 #include <stdint.h> // Explicit sized integers
 
+#define DEBUG_PRINT_CODE
 #define DEBUG_TRACE_EXECUTION
 
 #endif

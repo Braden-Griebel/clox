@@ -60,7 +60,7 @@ static char peekNext() {
  * Chack if the next character matches, conditionally advancing the scanner
  * only if the next character is a match for expected
  *
- * @param char Expected next character
+ * @param expected Expected next character
  *
  * @returns True if next character equals expected, otherwise false
  * */
