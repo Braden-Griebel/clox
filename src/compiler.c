@@ -91,7 +91,6 @@ static void errorAtCurrent(const char *message) {
  * Advance the scanner one token, handling the emission of error tokens */
 static void advance() {
   parser.previous = parser.current;
-  printf("Previous/Current token in advance is %d", parser.previous.type);
 
   for (;;) {
     parser.current = scanToken();
