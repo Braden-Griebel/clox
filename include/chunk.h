@@ -14,10 +14,17 @@
  * */
 typedef enum {
   OP_CONSTANT, //! Get a constant from Constant array
+  OP_NIL,      //! A nil value
+  OP_TRUE,     //! Boolean true
+  OP_FALSE,    //! Boolean false
+  OP_EQUAL,    //! Check equality
+  OP_GREATER,  //! Check greater
+  OP_LESS,     //! Check less
   OP_ADD,      //! Binary addition
   OP_SUBTRACT, //! Binary subtraction
   OP_MULTIPLY, //! Binary multiplication
   OP_DIVIDE,   //! Binary Division
+  OP_NOT,      //! Unary logical not
   OP_NEGATE,   //! Unary negate
   OP_RETURN,   //! Return (from function)
 } OpCode;

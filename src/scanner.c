@@ -269,7 +269,7 @@ Token scanToken() {
   case '*':
     return makeToken(TOKEN_STAR);
   case '!':
-    makeToken(match('=') ? TOKEN_BANG_EQUAL : TOKEN_BANG);
+    return makeToken(match('=') ? TOKEN_BANG_EQUAL : TOKEN_BANG);
   case '=':
     return makeToken(match('=') ? TOKEN_EQUAL_EQUAL : TOKEN_EQUAL);
   case '<':

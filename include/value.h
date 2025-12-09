@@ -9,9 +9,38 @@
 #include "common.h"
 
 /**
- * Values in lox
+ * Possible types of values in Lox */
+typedef enum {
+  VAL_BOOL,   //! A boolean
+  VAL_NIL,    //! Nil value
+  VAL_NUMBER, //! Floating point number
+} ValueType;
+
+/**
+ * Values in lox, a tagged union possibly representing bools, numbers, or nil
+ * values
  * */
-typedef double Value;
+typedef struct {
+  ValueType type; //! The type of the value
+  union {
+    bool boolean;  //! Bool value
+    double number; //! Floating point number
+  } as;            //! The actual data represented by the value
+} Value;
+
+// Macros for converting c values to lox values
+#define BOOL_VAL(value) ((Value){VAL_BOOL, {.boolean = value}})
+#define NIL_VAL ((Value){VAL_NIL, {.number = 0}})
+#define NUMBER_VAL(value) ((Value){VAL_NUMBER, {.number = value}})
+
+// Macros for converting lox values to c values
+#define AS_BOOL(value) ((value).as.boolean)
+#define AS_NUMBER(value) ((value).as.number)
+
+// Macros for checking the type of a lox value
+#define IS_BOOL(value) ((value).type == VAL_BOOL)
+#define IS_NIL(value) ((value).type == VAL_NIL)
+#define IS_NUMBER(value) ((value.type) == VAL_NUMBER)
 
 /**
  * Array of constant values (associated with a chunk)
@@ -21,6 +50,10 @@ typedef struct {
   int count;     //! Current number of values stored in the array
   Value *values; //! Pointer to the array holding the values
 } ValueArray;
+
+/**
+ * Check if two values are equal*/
+bool valuesEqual(Value a, Value b);
 
 /**
  * Initialize a new value array
