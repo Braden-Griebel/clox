@@ -1,8 +1,10 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "common.h"
 #include "memory.h"
+#include "object.h"
 #include "value.h"
 
 void initValueArray(ValueArray *array) {
@@ -39,6 +41,9 @@ void printValue(Value value) {
   case VAL_NUMBER:
     printf("%g", AS_NUMBER(value));
     break;
+  case VAL_OBJ:
+    printObject(value);
+    break;
   }
 }
 
@@ -52,6 +57,14 @@ bool valuesEqual(Value a, Value b) {
     return true;
   case VAL_NUMBER:
     return AS_NUMBER(a) == AS_NUMBER(b);
+  case VAL_OBJ: {
+    ObjString *aString = AS_STRING(a);
+    ObjString *bString = AS_STRING(a);
+    // First check for length equality, then use memcmp to check that
+    // the strings hold the same characters
+    return aString->length == bString->length &&
+           memcmp(aString->chars, bString->chars, aString->length) == 0;
+  }
   default:
     return false;
   }

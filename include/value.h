@@ -8,12 +8,16 @@
 
 #include "common.h"
 
+typedef struct Obj Obj;
+typedef struct ObjString ObjString;
+
 /**
  * Possible types of values in Lox */
 typedef enum {
   VAL_BOOL,   //! A boolean
   VAL_NIL,    //! Nil value
   VAL_NUMBER, //! Floating point number
+  VAL_OBJ,    //! Heap allocated object
 } ValueType;
 
 /**
@@ -25,6 +29,7 @@ typedef struct {
   union {
     bool boolean;  //! Bool value
     double number; //! Floating point number
+    Obj *obj;      //! Pointer to heap allocated object
   } as;            //! The actual data represented by the value
 } Value;
 
@@ -32,15 +37,18 @@ typedef struct {
 #define BOOL_VAL(value) ((Value){VAL_BOOL, {.boolean = value}})
 #define NIL_VAL ((Value){VAL_NIL, {.number = 0}})
 #define NUMBER_VAL(value) ((Value){VAL_NUMBER, {.number = value}})
+#define OBJ_VAL(object) ((Value){VAL_OBJ, {.obj = (Obj *)object}})
 
 // Macros for converting lox values to c values
 #define AS_BOOL(value) ((value).as.boolean)
 #define AS_NUMBER(value) ((value).as.number)
+#define AS_OBJ(value) ((value).as.obj)
 
 // Macros for checking the type of a lox value
 #define IS_BOOL(value) ((value).type == VAL_BOOL)
 #define IS_NIL(value) ((value).type == VAL_NIL)
 #define IS_NUMBER(value) ((value.type) == VAL_NUMBER)
+#define IS_OBJ(value) ((value).type == VAL_OBJ)
 
 /**
  * Array of constant values (associated with a chunk)

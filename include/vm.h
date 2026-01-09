@@ -14,6 +14,7 @@ typedef struct {
   uint8_t *ip;            //! Pointer to the current instruction
   Value stack[STACK_MAX]; //! Stack of values the VM is operating on
   Value *stackTop;        //! Pointer to the top of the stack
+  Obj *objects;           //! Pointer to the linked list of objects
 } VM;
 
 /**
@@ -24,6 +25,8 @@ typedef enum {
   INTERPRET_COMPILE_ERROR, //! Error occured during compilation
   INTERPRET_RUNTIME_ERROR, //! Error occured during runtime
 } InterpretResult;
+
+extern VM vm;
 
 /**
  * Initialize the VM.

@@ -7,6 +7,7 @@ sources = [
     'src/debug.c',
     'src/main.c',
     'src/memory.c',
+    'src/object.c',
     'src/scanner.c',
     'src/value.c',
     'src/vm.c',
